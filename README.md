@@ -2,15 +2,11 @@
 
 Học kỳ 2, Năm học 2023-2024
 
-**MSSV 1** : 
+**MSSV** : B2111859
+ 
+**Họ tên SV**: Huỳnh Thiên Phú
 
-**Họ tên SV 1**:
+**Lớp học phần**: CT275-02
 
-**MSSV 2**:
-
-**Họ tên SV 2**:
-
-**Lớp học phần**:
-
-**Tên dự án**:
+**Tên dự án**: Bookstore
 
