@@ -19,7 +19,7 @@ class Model
             'dbpass' => $_ENV['DB_PASS']
         ];
         $db = new PDOFactory($config);
-		$this->pdo = $db->connect();
+        $this->pdo = $db->connect();
     }
 
     protected function getPDO(): PDO
@@ -78,7 +78,7 @@ class Model
         return $stmt->fetch();
     }
 
-    public function all(string $tableName) : array
+    public function all(string $tableName): array
     {
         $sql = "SELECT * FROM $tableName";
         $stmt = $this->pdo->prepare($sql);
@@ -94,5 +94,13 @@ class Model
         return $stmt->execute([
             ':id' => $id
         ]);
+    }
+    public function findByProp(string $tableName, string $property, string|int $value)
+    {
+        $sql = "SELECT $property FROM $tableName WHERE $property = :$property";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindValue(":$property", $value);
+        $stmt->execute();
+        return $stmt->fetchColumn();
     }
 }

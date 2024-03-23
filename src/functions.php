@@ -17,6 +17,7 @@ function render_view(string $document, array $data = [])
     extract($data, EXTR_PREFIX_SAME, '__var_');
     require($path);
 }
+
 function thousandsCurrencyFormat($num)
 {
 

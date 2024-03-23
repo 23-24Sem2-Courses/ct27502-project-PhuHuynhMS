@@ -13,5 +13,8 @@ require_once __DIR__ . '/../src/routes/customer.php';
 
 require_once __DIR__ . '/../src/routes/login.php';
 
+require_once __DIR__ . '/../src/routes/signup.php';
+
+
 
 $router->run();

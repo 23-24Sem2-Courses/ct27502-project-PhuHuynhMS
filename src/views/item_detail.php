@@ -1,12 +1,12 @@
 <?php
 
-include_once __DIR__ . '/../../src/partials/header.php';
+include_once __DIR__ . '/../src/partials/header.php';
 
 ?>
 
 
 <body>
-    <?php include_once __DIR__ . '/../../src/partials/navbar.php'; ?>
+    <?php include_once __DIR__ . '/../src/partials/navbar.php'; ?>
 
     <div class="d-flex justify-content-around align-items-start">
         <div class="img-section ms-3">
@@ -55,4 +55,4 @@ include_once __DIR__ . '/../../src/partials/header.php';
     </div>
 
 
-    <?php include_once __DIR__ . '/../../src/partials/footer.php';
+    <?php include_once __DIR__ . '/../src/partials/footer.php';

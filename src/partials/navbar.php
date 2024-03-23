@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li>
-                <a href="./../../public/index.php">
+                <a href="/">
                     <i class="fa fa-home"></i>
                     Trang chủ
                 </a>

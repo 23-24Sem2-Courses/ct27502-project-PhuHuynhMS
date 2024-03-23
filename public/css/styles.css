@@ -108,6 +108,10 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
+span.invalid {
+  color: var(--clr-red-dark);
+  text-align: center;
+}
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -151,6 +155,13 @@ p {
 .quantity-btn{
   width: 40px;
   height: 40px;
+}
+
+.signup-form {
+  background-color: var(--clr-primary-10);
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: var(--dark-shadow);
 }
 
 @media screen and (min-width: 992px) {
