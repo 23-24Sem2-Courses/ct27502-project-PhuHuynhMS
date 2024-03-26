@@ -29,7 +29,8 @@ class CustomerRegisterController extends Controller
     {
         $customer = new Customer();
         if ($customer->fill($_POST)->validate()) {
-            $customer->add() && render_view('/home');
+            $customer->add();
+            redirect('/login');
         }
         else {
             $errors = $customer->getValidationErrors();

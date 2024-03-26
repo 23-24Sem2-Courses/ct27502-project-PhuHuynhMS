@@ -93,66 +93,6 @@ include_once __DIR__ . '/../partials/header.php';
             </div>
           </a>
         <?php endforeach ?>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/ketoanviahe.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Thực hành báo cáo tài chính căn bản từ quầy bán nước chanh</p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/ketoanviahe.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Thực hành báo cáo tài chính căn bản từ quầy bán nước chanh</p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/2a6154ba08df6ce6161c13f4303fa19e.jpg.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Cây cam ngọt của tôi</p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/ketoanviahe.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Thực hành báo cáo tài chính căn bản từ quầy bán nước chanh</p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/ketoanviahe.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Thực hành báo cáo tài chính căn bản từ quầy bán nước chanh</p>
-            </div>
-          </div>
-        </a>
-        <a href="">
-          <div class="item card" style="width: 18rem;">
-            <img src="./uploads/ketoanviahe.webp" class="card-img-top" alt="...">
-            <div class="card-body">
-              <p class="price">96.000 <sup>₫</sup></p>
-              <p class="card-text">Tô Hoài</p>
-              <p class="description">Thực hành báo cáo tài chính căn bản từ quầy bán nước chanh</p>
-            </div>
-          </div>
-        </a>
       </div>
     </div>
   </div>

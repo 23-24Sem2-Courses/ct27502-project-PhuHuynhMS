@@ -11,10 +11,11 @@ function html_escape(string|null $text): string
     return htmlspecialchars($text ?? '', ENT_QUOTES, 'UTF-8', false);
 }
 
-function render_view(string $document, array $data = [])
+function render_view(string $document, array $data = [], array $anotherData = [])
 {
     $path = VIEWS_DIR . "/{$document}.php";
     extract($data, EXTR_PREFIX_SAME, '__var_');
+    extract($anotherData, EXTR_PREFIX_SAME, '__var_');
     require($path);
 }
 
@@ -36,4 +37,11 @@ function thousandsCurrencyFormat($num)
     }
 
     return $num;
+}
+
+function getSessionValues(array $session, array $neededArray): array {
+    foreach($session as $key => $value) {
+        $neededArray[$key] = $value;
+    }
+    return $neededArray;
 }

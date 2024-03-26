@@ -108,7 +108,7 @@ p {
   margin-bottom: 1.25rem;
   color: var(--clr-grey-5);
 }
-span.invalid {
+p.invalid, span.invalid {
   color: var(--clr-red-dark);
   text-align: center;
 }
@@ -157,7 +157,7 @@ span.invalid {
   height: 40px;
 }
 
-.signup-form {
+.form {
   background-color: var(--clr-primary-10);
   border-radius: var(--radius);
   padding: 1rem;
@@ -296,7 +296,7 @@ nav, .detail-item {
 
 @media screen and (min-width: 800px) {
   .nav-center {
-    max-width: 1170px;
+    max-width: 1330px;
     margin: 0 auto;
     display: flex;
     align-items: center;
@@ -336,7 +336,9 @@ nav, .detail-item {
   .social-icons a:hover {
     color: var(--clr-primary-7);
   }
-
+  .social-link ul li a {
+    font-size: large;
+  }
   .search-btn-sm {
     display: none;
   }

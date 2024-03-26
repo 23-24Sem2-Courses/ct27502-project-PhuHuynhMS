@@ -50,7 +50,6 @@ class Model
     public function update(string $table, array $record, int $id): bool
     {
         $keys = array_keys($record);
-        $keys_str = join(", ", $keys);
         $param_arr = array_map(fn ($key) => ("$key = :$key"), $keys);
         $param_str = join(", ", $param_arr);
 
@@ -68,12 +67,13 @@ class Model
     }
 
     #Find data in database
-    public function find(int $id, string $tableName)
+    public static function find(string $prop,string|int $value, string $tableName): array
     {
-        $sql = "SELECT * FROM $tableName WHERE id = :id";
+        $sql = "SELECT * FROM $tableName WHERE  $prop = :$prop";
 
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':id' => $id]);
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+        $stmt->execute([":$prop" => $value]);
 
         return $stmt->fetch();
     }
@@ -95,10 +95,11 @@ class Model
             ':id' => $id
         ]);
     }
-    public function findByProp(string $tableName, string $property, string|int $value)
+    public static function findByProp(string $tableName, string $property, string|int $value)
     {
+        $Model = new Model();
         $sql = "SELECT $property FROM $tableName WHERE $property = :$property";
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $Model->getPDO()->prepare($sql);
         $stmt->bindValue(":$property", $value);
         $stmt->execute();
         return $stmt->fetchColumn();

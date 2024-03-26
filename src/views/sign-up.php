@@ -11,12 +11,12 @@ include_once __DIR__ . '/../partials/header.php';
     <div class="d-flex flex-column align-items-center form-body">
 
         <form class="py-4 w-50" action="/signup" method="POST">
-            <div class="container signup-form w-75">
+            <div class="container form w-75">
                 <h3 style="text-align: center;" class="sign-up-text">Đăng ký</h3>
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="text" class="form-control" id="email" name="email" value="<?= isset($oldValues['email']) ? $oldValues['email'] : '' ?>">
+                    <input type="text" class="form-control" id="email" name="email" value="<?= isset($oldValues['email']) ? htmlspecialchars($oldValues['email']) : '' ?>">
                     <?php if (isset($errors['email'])) : ?>
                         <span class="invalid">
                             <strong><?= $errors['email'] ?></strong>
@@ -43,7 +43,7 @@ include_once __DIR__ . '/../partials/header.php';
                 </div>
                 <div class="mb-3">
                     <label for="name" class="form-label">Họ tên</label>
-                    <input type="text" class="form-control" id="name" name="name" value="<?= isset($oldValues['name']) ? $oldValues['name'] : '' ?>">
+                    <input type="text" class="form-control" id="name" name="name" value="<?= isset($oldValues['name']) ? htmlspecialchars($oldValues['name']) : '' ?>">
                     <?php if (isset($errors['name'])) : ?>
                         <span class="invalid">
                             <strong><?= $errors['name'] ?></strong>
@@ -53,7 +53,7 @@ include_once __DIR__ . '/../partials/header.php';
 
                 <div class="mb-3">
                     <label for="Address" class="form-label">Địa chỉ</label>
-                    <input type="text" class="form-control" id="Address" name="address" value="<?= isset($oldValues['address']) ? $oldValues['address'] : '' ?>">
+                    <input type="text" class="form-control" id="Address" name="address" value="<?= isset($oldValues['address']) ? htmlspecialchars($oldValues['address']) : '' ?>">
                     <?php if (isset($errors['address'])) : ?>
                         <span class="invalid">
                             <strong><?= $errors['address'] ?></strong>
@@ -62,7 +62,7 @@ include_once __DIR__ . '/../partials/header.php';
                 </div>
                 <div class="mb-3">
                     <label for="InputNumber" class="form-label">Số điện thoại</label>
-                    <input type="text" class="form-control" id="InputNumber" name="phone_number" value="<?= isset($oldValues['phone']) ? $oldValues['phone'] : '' ?>">
+                    <input type="text" class="form-control" id="InputNumber" name="phone_number" value="<?= isset($oldValues['phone']) ? htmlspecialchars($oldValues['phone']) : '' ?>">
                     <?php if (isset($errors['phone'])) : ?>
                         <span class="invalid">
                             <strong><?= $errors['phone'] ?></strong>

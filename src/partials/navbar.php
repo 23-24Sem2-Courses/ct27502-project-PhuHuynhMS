@@ -33,10 +33,17 @@
         </div>
         <ul class="social-icons">
             <li>
-                <a href="/login">
-                    <i class="fas fa-user"></i>
-                    Tài khoản
-                </a>
+                <?php if (isset($_SESSION['logged_in'])) : ?>
+                    <a href="/customer/profile">
+                        <i class="fas fa-user"></i>
+                        Thông tin tài khoản
+                    </a>
+                <?php else : ?>
+                    <a href="/login">
+                        <i class="fas fa-user"></i>
+                        Tài khoản
+                    </a>
+                <?php endif ?>
             </li>
             <li>
                 <a href="/">
@@ -47,8 +54,18 @@
             <li>
                 <a href="https://www.twitter.com">
                     <i class="fas fa-shopping-cart"></i>
+                    Giỏ hàng
                 </a>
             </li>
+            <?php if (isset($_SESSION['logged_in'])) : ?>
+                <li>
+                    <a href="/customer/logout" class="text-danger">
+                        Đăng xuất
+                    </a>
+                </li>
+            <?php
+             endif 
+             ?>
         </ul>
     </div>
 </nav>

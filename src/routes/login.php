@@ -1,4 +1,4 @@
 <?php
 
 $router->get('/login', 'App\Controllers\CustomerLoginController@create');
-$router->post('/customer/login', 'App\Controllers\CustomerLoginController@index');
+$router->post('/login', 'App\Controllers\CustomerLoginController@store');
