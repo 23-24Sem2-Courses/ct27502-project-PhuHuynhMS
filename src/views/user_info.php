@@ -101,4 +101,7 @@ include_once __DIR__ . '/../partials/header.php';
         </div>
     </div>
 
-    <?php include_once __DIR__ . '/../partials/footer.php';
+    <?php 
+    include_once __DIR__ . '/../partials/footer.php';
+    include_once __DIR__ . '/../partials/foot.php';
+    ?>

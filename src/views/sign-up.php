@@ -83,8 +83,7 @@ include_once __DIR__ . '/../partials/header.php';
             </div>
         </form>
     </div>
-    <?php include_once __DIR__ . '/../partials/footer.php'; ?>
-
-</body>
-
-</html>
+    <?php 
+    include_once __DIR__ . '/../partials/footer.php';
+    include_once __DIR__ . '/../partials/foot.php';
+    ?>

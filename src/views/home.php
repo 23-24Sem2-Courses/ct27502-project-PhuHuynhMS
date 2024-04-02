@@ -84,9 +84,9 @@ include_once __DIR__ . '/../partials/header.php';
             <div class="item card" style="width: 18rem;">
               <img src="<?= './uploads/' . $book['image'] ?>" class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="price"><?= $book['price'] ?> <sup>₫</sup></p>
-                <p class="card-text"><?= $book['author'] ?></p>
-                <p class="book_name"><?= $book['book_name'] ?></p>
+                <p class="price"><?= number_format($book['price'], thousands_separator: ',') ?? '' ?> <sup>₫</sup></p>
+                <p class="card-text"><?= htmlspecialchars($book['author']) ?? '' ?></p>
+                <p class="book_name"><?= htmlspecialchars($book['book_name']) ?? '' ?></p>
                 <p class="quantity-sold">Đã bán
                   <?= thousandsCurrencyFormat($book['quantity_sold']) ?></p>
               </div>
@@ -97,4 +97,7 @@ include_once __DIR__ . '/../partials/header.php';
     </div>
   </div>
 
-  <?php include_once __DIR__ . '/../partials/footer.php'; ?>
+  <?php
+  include_once __DIR__ . '/../partials/footer.php';
+  include_once __DIR__ . '/../partials/foot.php';
+  ?>

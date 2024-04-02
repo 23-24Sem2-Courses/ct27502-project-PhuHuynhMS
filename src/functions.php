@@ -39,9 +39,62 @@ function thousandsCurrencyFormat($num)
     return $num;
 }
 
-function getSessionValues(array $session, array $neededArray): array {
-    foreach($session as $key => $value) {
+function getSessionValues(array $session, array $neededArray): array
+{
+    foreach ($session as $key => $value) {
         $neededArray[$key] = $value;
     }
     return $neededArray;
+}
+
+function handle_file_upload(string $fileTypeName): string | bool
+{
+    if (!isset($_FILES[$fileTypeName]))
+        return false;
+
+    $avatar = $_FILES[$fileTypeName];
+    $avatar_name = $avatar['name'];
+    $avatar_tmp_name = $avatar['tmp_name'];
+    $avatar_size = $avatar['size'];
+    $avatar_error = $avatar['error'];
+
+    if ($avatar_error !== 0 || $avatar_size > 10000000)
+        return false;
+
+    $avatar_new_name = uniqid() . '_' . $avatar_name;
+    $avatar_destination = __DIR__ . '/../public/uploads/' . $avatar_new_name;
+
+    if (!move_uploaded_file($avatar_tmp_name, $avatar_destination))
+        return false;
+
+    return $avatar_new_name;
+}
+
+function limit_word(string $string, bool $isAdmin, int $limit): string
+{
+    $string = strip_tags($string);
+
+    $substring = '';
+
+    if (strlen($string) > $limit) {
+
+        $index = $limit - 1;
+
+        while ($string[$index] !== ' ') {
+            $index = $index + 1;
+        }
+        $substring = substr($string, 0, $index);
+
+        $substring .= '...';
+    } else {
+        $substring = $string;
+    }
+
+    if (!$isAdmin) {
+        $substring .= '
+        <a href="#">Xem thêm</a>
+        ';
+    }
+
+    return $substring;
 }

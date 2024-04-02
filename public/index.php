@@ -15,6 +15,8 @@ require_once __DIR__ . '/../src/routes/login.php';
 
 require_once __DIR__ . '/../src/routes/signup.php';
 
+require_once __DIR__ . '/../src/routes/admin.php';
+
 
 
 $router->run();

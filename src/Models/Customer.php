@@ -50,10 +50,10 @@ class Customer extends Model
     {
         $keys = array_keys($newRecord);
 
-        if(in_array('passwd', $keys)) {
+        if (in_array('passwd', $keys)) {
             $newRecord['passwd'] = password_hash($newRecord['passwd'], PASSWORD_BCRYPT);
         }
-        return parent::update('customers', $newRecord, $id);
+        return parent::update('customers', $newRecord, $id, 'id');
     }
 
     #Get customer info
@@ -202,5 +202,13 @@ class Customer extends Model
             $this->errors['empty_input'] = "Vui lòng nhập đầy đủ thông tin";
         }
         return empty($this->errors);
+    }
+
+    public function check_admin_login(): bool
+    {
+        if ($this->phone_number === '0123321' && $this->passwd === 'Admin@123') {
+            return true;
+        }
+        return false;
     }
 }

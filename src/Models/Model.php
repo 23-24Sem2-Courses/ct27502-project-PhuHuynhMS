@@ -40,34 +40,34 @@ class Model
         $stmt = $this->pdo->prepare($sql);
 
         foreach ($keys as $key) {
-            $stmt->bindParam(":$key", $record["$key"]);
+            $stmt->bindParam(":$key", $record[$key]);
         }
 
         return $stmt->execute();
     }
 
     #Update data into database
-    public function update(string $table, array $record, int $id): bool
+    public function update(string $table, array $record, int $id, string $idName): bool
     {
         $keys = array_keys($record);
         $param_arr = array_map(fn ($key) => ("$key = :$key"), $keys);
         $param_str = join(", ", $param_arr);
 
-        $sql = "UPDATE $table SET $param_str WHERE id = :id";
+        $sql = "UPDATE $table SET $param_str WHERE $idName = :id";
 
         $stmt = $this->pdo->prepare($sql);
 
         foreach ($keys as $key) {
-            $stmt->bindParam(":$key", $record["$key"]);
+            $stmt->bindParam(":$key", $record[$key]);
         }
 
-        $stmt->bindValue(':id', $id);
+        $stmt->bindParam(':id', $id);
 
         return $stmt->execute();
     }
 
     #Find data in database
-    public static function find(string $prop,string|int $value, string $tableName): array
+    public static function find(string $prop, string|int $value, string $tableName): array|bool
     {
         $sql = "SELECT * FROM $tableName WHERE  $prop = :$prop";
 
@@ -95,6 +95,8 @@ class Model
             ':id' => $id
         ]);
     }
+
+    #Get 1 column value
     public static function findByProp(string $tableName, string $property, string|int $value)
     {
         $Model = new Model();
