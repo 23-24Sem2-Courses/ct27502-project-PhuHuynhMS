@@ -98,3 +98,20 @@ function limit_word(string $string, bool $isAdmin, int $limit): string
 
     return $substring;
 }
+
+function get_URL_Param(int $orderNumber)
+{
+    $url = parse_url($_SERVER['REQUEST_URI']);
+    $path = $url['path'];
+
+    $pathArray = explode('/', $path);
+    $concludedArray = explode('=', $pathArray[$orderNumber]);
+
+    return $concludedArray;
+}
+
+function split_paragraph(string $long_text): array
+{
+    $paragraph_array = explode("\n", $long_text);
+    return $paragraph_array;
+}

@@ -10,26 +10,14 @@
             </button>
         </div>
         <div>
-            <div class="searchbar">
-                <input type="text" class="search" placeholder="Tìm kiếm">
-                <button type="submit" class="search-btn-lg show-searchBtn">
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-            <ul class="links">
-                <li>
-                    <a href="#">Home</a>
-                </li>
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Projects</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
+            <form action="/" method="get">
+                <div class="searchbar">
+                    <input type="text" class="search" name="searchKey" placeholder="Tìm kiếm">
+                    <button type="submit" class="search-btn-lg show-searchBtn">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </form>
         </div>
         <ul class="social-icons">
             <li>
@@ -64,8 +52,8 @@
                     </a>
                 </li>
             <?php
-             endif 
-             ?>
+            endif
+            ?>
         </ul>
     </div>
 </nav>

@@ -63,9 +63,9 @@ class Book extends Model
         return parent::update('products', $newValue, $id, 'id_book');
     }
 
-    public function deleteBook(int $id): bool
+    public static function deleteBook(int $id): bool
     {
-        return parent::delete($id, 'products');
+        return parent::delete('id_book', $id, 'products');
     }
 
     public static function allBook(): array
@@ -85,7 +85,7 @@ class Book extends Model
         return $book;
     }
 
-    public function validate() : bool
+    public function validate(): bool
     {
         $book = [
             'book_name' => $this->book_name,
@@ -114,7 +114,13 @@ class Book extends Model
         return empty($this->errors);
     }
 
-    public function getvalidationErrors() {
+    public function getvalidationErrors()
+    {
         return $this->errors;
+    }
+
+    public static function getBooksByKey(string $key): array|bool
+    {
+        return parent::findByKeys($key, 'products', ['book_name', 'author']);
     }
 }

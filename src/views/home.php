@@ -79,8 +79,11 @@ include_once __DIR__ . '/../partials/header.php';
       </article>
       <!-- Products -->
       <div class="items-container col d-flex flex-wrap  align-content-start">
-        <?php foreach ($books as $book) : ?>
-          <a href="">
+        <?= $not_found ?? '' ?>
+        <?php if (isset($books))
+          foreach ($books as $book) :
+        ?>
+          <a href="/product/detail/id=<?= $book['id_book'] ?>">
             <div class="item card" style="width: 18rem;">
               <img src="<?= './uploads/' . $book['image'] ?>" class="card-img-top" alt="...">
               <div class="card-body">

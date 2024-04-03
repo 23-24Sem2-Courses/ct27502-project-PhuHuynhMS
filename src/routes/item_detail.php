@@ -1,3 +1,3 @@
 <?php
 
-$router->get('/detail/id/(\+d)', 'App\Controllers\ItemController@index');
+$router->get('/product/detail/id=(\d+)', 'App\Controllers\ItemDetailController@index');

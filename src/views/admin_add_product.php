@@ -69,7 +69,7 @@ include_once __DIR__ . '/../partials/header.php';
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="manufactorer" class="col-sm-2 col-form-label">Nhà sản xuất</label>
+                        <label for="manufactorer" class="col-sm-2 col-form-label">Nhà xuất bản</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" name="manufactorer">
                         </div>

@@ -28,13 +28,13 @@ include_once __DIR__ . '/../partials/header.php';
                                     <input type="hidden" class="form-control" id="id" name="id" value="<?= $id ?? '' ?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="hidden" class="form-control" id="passwd" name="passwd" value="<?= $passwd ?? '' ?>">
+                                    <input type="hidden" class="form-control" id="passwd" name="passwd" value="<?= htmlspecialchars($passwd) ?? '' ?>">
                                 </div>
                                 <div class="form-group">
                                     <div class="mb-3 row">
                                         <label for="name" class="col-sm-2 col-form-label">Họ và tên</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="name" name="name" value="<?= $name ?? '' ?>">
+                                            <input type="text" class="form-control" id="name" name="name" value="<?= htmlspecialchars($name) ?? '' ?>">
                                             <p class="invalid text-start"><?= $errors['name'] ?? '' ?></p>
                                         </div>
                                     </div>
@@ -43,7 +43,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <div class="mb-3 row">
                                         <label for="email" class="col-sm-2 col-form-label">Email</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="email" name="email" value="<?= $email ?? '' ?>">
+                                            <input type="text" class="form-control" id="email" name="email" value="<?= htmlspecialchars($email) ?? '' ?>">
                                             <p class="invalid text-start"><?= $errors['email'] ?? '' ?></p>
                                         </div>
                                     </div>
@@ -52,7 +52,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <div class="mb-3 row">
                                         <label for="phone_number" class="col-sm-2 col-form-label">Số điện thoại</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="<?= $phone_number ?? '' ?>">
+                                            <input type="text" class="form-control" id="phone_number" name="phone_number" value="<?= htmlspecialchars($phone_number) ?? '' ?>">
                                             <p class="invalid text-start"><?= $errors['phone'] ?? '' ?></p>
 
                                         </div>
@@ -62,7 +62,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <div class="mb-3 row">
                                         <label for="address" class="col-sm-2 col-form-label">Địa chỉ</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="address" name="address" value="<?= $address ?? '' ?>">
+                                            <input type="text" class="form-control" id="address" name="address" value="<?= htmlspecialchars($address) ?? '' ?>">
                                             <p class="invalid text-start"><?= $errors['address'] ?? '' ?></p>
                                         </div>
                                     </div>
@@ -101,7 +101,7 @@ include_once __DIR__ . '/../partials/header.php';
         </div>
     </div>
 
-    <?php 
+    <?php
     include_once __DIR__ . '/../partials/footer.php';
     include_once __DIR__ . '/../partials/foot.php';
     ?>

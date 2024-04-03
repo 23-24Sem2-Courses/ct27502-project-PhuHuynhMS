@@ -8,19 +8,36 @@ class AdminProductController
 {
     public function index()
     {
+        if (!isset($_GET['searchKey'])) {
+            render_view('admin', [
+                'books' => Book::allBook()
+            ]);
+        } else {
 
-        render_view('admin', [
-            'books' => Book::allBook()
-        ]);
+            $key = $_GET['searchKey'];
+
+            $books = Book::getBooksByKey($key);
+
+            if ($books) {
+                render_view('/admin', [
+                    'books' => $books
+                ]);
+            } else {
+                $error_msg['not_found'] = 'Không tìm thấy sách';
+                render_view('/admin', $error_msg);
+            }
+        }
     }
 
-    public function create() {
+    public function create()
+    {
         render_view('admin_add_product');
     }
 
-    public function add() {
+    public function add()
+    {
         $book = new Book();
-        foreach($_POST as $key => $value) {
+        foreach ($_POST as $key => $value) {
             $data[$key] = $value;
         }
 
@@ -30,8 +47,7 @@ class AdminProductController
             $book->add();
             $_SESSION['added'] = 'success';
             redirect('/admin');
-        }
-        else {
+        } else {
             render_view('admin_add_product', $book->getvalidationErrors());
         }
     }
@@ -39,13 +55,8 @@ class AdminProductController
     public function edit()
     {
 
-        $url = parse_url($_SERVER['REQUEST_URI']);
-        $path = $url['path'];
-
-        $pathArray = explode('/', $path);
-        $IdArray = explode('=', $pathArray[2]);
-
-        $id = (int)$IdArray[1];
+        $SecondParamArray = get_URL_Param(2);
+        $id = (int)$SecondParamArray[1];
 
         $book = Book::getBookByID($id);
 
@@ -87,6 +98,16 @@ class AdminProductController
         } else {
             $currentbook = Book::getBookByID($book_id);
             render_view('product_update', $book->getvalidationErrors(), $currentbook);
+        }
+    }
+
+    public function destroy()
+    {
+        $sencondParamArray = get_URL_Param(2);
+        $book_id = (int)$sencondParamArray[1];
+
+        if (Book::deleteBook($book_id)) {
+            redirect('/admin');
         }
     }
 }

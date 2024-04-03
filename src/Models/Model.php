@@ -86,13 +86,14 @@ class Model
         return $stmt->fetchAll();
     }
 
-    public function delete(int $id, string $tableName): bool
+    public static function delete(string $idName, int $id, string $tableName): bool
     {
-        $sql = "DELETE FROM $tableName WHERE id = :id";
+        $sql = "DELETE FROM $tableName WHERE $idName = :$idName";
 
-        $stmt = $this->pdo->prepare($sql);
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
         return $stmt->execute([
-            ':id' => $id
+            ":$idName" => $id
         ]);
     }
 
@@ -105,5 +106,34 @@ class Model
         $stmt->bindValue(":$property", $value);
         $stmt->execute();
         return $stmt->fetchColumn();
+    }
+
+    #Find by search key
+    public static function findByKeys(string $key, string $tableName, array $props)
+    {
+        $number_prop = count($props);
+        $sql = '';
+        $i = 0;
+        do {
+            $param = $props[$i];
+            if ($i === 0) {
+                $sql = "SELECT * FROM $tableName WHERE  $param LIKE :$param";
+            } else {
+                $sql .= " or $param LIKE :$param";
+                $number_prop--;
+            }
+            $i++;
+        } while ($number_prop > 1);
+
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+
+        $var = "%$key%";
+        foreach ($props as $prop) {
+            $stmt->bindParam(":$prop", $var);
+        }
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 }
