@@ -10,37 +10,40 @@ include_once __DIR__ . '/../partials/header.php';
 
     <div class="d-flex justify-content-around align-items-start">
         <div class="img-section ms-3 position-sticky" style="margin-bottom: 15px; top:12px">
-            <img src="/uploads/<?= $image ?>" alt="" width=400 height=400>
+            <img src="/uploads/<?= $image ?>" id="book-image" alt="" width=400 height=400>
         </div>
         <div class="d-flex flex-column">
             <div class="detail-section d-flex flex-column mb-3 me-3 detail-item p-3">
                 <div class="detail-header mb-3">
                     <h3 class="book-name"><?= htmlspecialchars($book_name) ?? '' ?></h3>
                     <p class='author'><?= htmlspecialchars($author) ?? '' ?></p>
-                    <p class="price"><?= number_format(htmlspecialchars($price), thousands_separator: '.') ?? '' ?><sup>₫</sup></p>
+                    <p><span class="price"><?= number_format(htmlspecialchars($price), thousands_separator: '.') ?? '' ?></span><sup>₫</sup></p>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div class="col-sm-5 cashier mb-3 me-4">
-                        <div class="quantity-container ">
-                            <h4>Số lượng</h4>
-                            <div class="quatity-btns d-flex align-items-center mb-3">
-                                <div class="border quantity-btn rounded d-flex justify-content-center align-items-center">
-                                    <button class="minus-btn bg-transparent border-0 m-1">-</button>
+                        <form action="/invoice/detail" method="post">
+                            <input hidden name="id_book" id="book_id" value="<?= $id_book ?>">
+                            <div class="quantity-container ">
+                                <h4>Số lượng</h4>
+                                <div class="quatity-btns d-flex align-items-center mb-3">
+                                    <div class="border quantity-btn rounded d-flex justify-content-center align-items-center">
+                                        <button type="button" class="minus-btn bg-transparent border-0 m-1">-</button>
+                                    </div>
+                                    <div id="quantity" class="border quantity-btn rounded d-flex justify-content-center align-items-center m-1">
+                                        0
+                                    </div>
+                                    <div class="border quantity-btn rounded d-flex justify-content-center align-items-center">
+                                        <button type="button" class="plus-btn quantity-btn bg-transparent border-0">+</button>
+                                    </div>
                                 </div>
-                                <div class="border quantity-btn rounded d-flex justify-content-center align-items-center m-1">
-                                    <input type="text" name="" id="" value="0" style="width: 38px;" class="border-0 text-center ">
-                                </div>
-                                <div class="border quantity-btn rounded d-flex justify-content-center align-items-center">
-                                    <button class="plus-btn quantity-btn bg-transparent border-0">+</button>
-                                </div>
+                                <h4>Tạm tính</h4>
+                                <h4><span class="cost text-black"><strong>0</span><sup class="text-black">₫</sup></strong></h4>
                             </div>
-                            <h4>Tạm tính</h4>
-                            <p>0</p>
-                        </div>
-                        <div class="order">
-                            <button class="text-white btn btn-danger mb-2">Mua ngay</button>
-                            <button class="btn btn-outline-primary">Thêm vào giỏ</button>
-                        </div>
+                            <div class="order">
+                                <button class="text-white btn btn-danger mb-2">Mua ngay</button>
+                                <button type="button" class="btn btn-outline-primary add-btn" onclick="addToCart(<?= $id_book ?>)">Thêm vào giỏ</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="item-detail col-sm-5 d-flex justify-content-center">
                         <div class="container-fluid detail-table table border pb-2 ps-4 pe-4">
@@ -97,12 +100,11 @@ include_once __DIR__ . '/../partials/header.php';
                 </div>
             </div>
             <div class="detail-section d-flex flex-column mb-3 me-3 detail-item p-3">
-                <h3>Mot so san pham tuong tu</h3>
+                <h3>Một số sản phẩm tương tự</h3>
             </div>
         </div>
     </div>
-
-
+    
     <?php
     include_once __DIR__ . '/../partials/footer.php';
     include_once __DIR__ . '/../partials/foot.php';

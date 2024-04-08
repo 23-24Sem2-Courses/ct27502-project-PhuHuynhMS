@@ -19,7 +19,8 @@ require_once __DIR__ . '/../src/routes/admin.php';
 
 require_once __DIR__ . '/../src/routes/item_detail.php';
 
+require_once __DIR__ . '/../src/routes/cart.php';
 
-
+require_once __DIR__ . '/../src/routes/invoice.php';
 
 $router->run();

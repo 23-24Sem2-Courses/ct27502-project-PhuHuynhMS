@@ -4,6 +4,9 @@
 // remove - remove class
 // toggle - toggles class
 
+function formatNumberWithVietnameseSeparator(number) {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
 $(document).ready(function () {
     //Show confirmation alert
@@ -25,6 +28,7 @@ $(document).ready(function () {
         })
     });
 
+    //Show more
     $('.btn-more').on('click', function () {
         if ($(this)[0].innerText === 'Xem thêm') {
             $(this)[0].innerText = 'Thu gọn';
@@ -38,7 +42,7 @@ $(document).ready(function () {
             $(this)[0].innerText = 'Xem thêm';
 
         }
-    })
+    });
 
     //Show image before change
     let imgURL = null;

@@ -39,10 +39,14 @@ function thousandsCurrencyFormat($num)
     return $num;
 }
 
-function getSessionValues(array $session, array $neededArray): array
+function getSessionValues(array $session, array $except = []): array
 {
+    $neededArray = [];
+    
     foreach ($session as $key => $value) {
-        $neededArray[$key] = $value;
+        if (!in_array($key, $except)) {
+            $neededArray[$key] = $value;
+        }
     }
     return $neededArray;
 }

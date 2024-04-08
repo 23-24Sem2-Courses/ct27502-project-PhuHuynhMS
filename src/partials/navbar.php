@@ -12,7 +12,7 @@
         <div>
             <form action="/" method="get">
                 <div class="searchbar">
-                    <input type="text" class="search" name="searchKey" placeholder="Tìm kiếm">
+                    <input type="text" class="search" name="searchKey" placeholder="Tìm kiếm" value="<?= htmlspecialchars($_GET['searchKey'] ?? '') ?>">
                     <button type="submit" class="search-btn-lg show-searchBtn">
                         <i class="fa fa-search"></i>
                     </button>
@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://www.twitter.com">
+                <a href="/checkout/cart">
                     <i class="fas fa-shopping-cart"></i>
                     Giỏ hàng
                 </a>
@@ -48,7 +48,7 @@
             <?php if (isset($_SESSION['logged_in'])) : ?>
                 <li>
                     <a href="/customer/logout" class="text-danger">
-                        Đăng xuất
+                        <i class='fas fa-sign-out-alt'></i>
                     </a>
                 </li>
             <?php
