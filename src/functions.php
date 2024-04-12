@@ -42,7 +42,7 @@ function thousandsCurrencyFormat($num)
 function getSessionValues(array $session, array $except = []): array
 {
     $neededArray = [];
-    
+
     foreach ($session as $key => $value) {
         if (!in_array($key, $except)) {
             $neededArray[$key] = $value;

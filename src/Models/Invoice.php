@@ -5,7 +5,7 @@ namespace App\Models;
 
 class Invoice extends Model
 {
-    private $invoice_id, $customer, $status, $total, $payment_method;
+    private $invoice_id, $customer_id, $invoice_status, $total, $payment_method, $shipment_method;
 
     public function __construct()
     {
@@ -14,45 +14,35 @@ class Invoice extends Model
 
     public function fill(array $record): Invoice
     {
-        $this->invoice_id = htmlspecialchars($record['invoice_id']) ?? -1;
-        $this->status = htmlspecialchars($record['status']) ?? '';
-        $this->total = htmlspecialchars($record['total']) ?? '';
-        $this->payment_method = htmlspecialchars($record['payment_method']) ?? '';
+        $this->invoice_id = htmlspecialchars($record['invoice_id'] ?? -1);
+        $this->invoice_status = htmlspecialchars($record['invoice_status'] ?? '');
+        $this->total = htmlspecialchars($record['total'] ?? '');
+        $this->payment_method = htmlspecialchars($record['payment_method'] ?? '');
+        $this->shipment_method = htmlspecialchars($record['shipment_method'] ?? '');
 
-        $customerModel = new Customer();
-
-        $record = getSessionValues($_SESSION, ['logged_in']);
-
-        $this->customer = $customerModel->fill($record);
+        $this->customer_id = $record['customer_id'] ?? '';
 
         return $this;
     }
 
-    public function isCartExist(int $customer_id): array|bool
+    public function add(): bool
     {
-        $sql = 'SELECT * FROM carts WHERE customer_id = :customer_id';
-
-        $stmt = $this->getPDO()->prepare($sql);
-
-        $stmt->bindParam(':customer_id', $this->customer_id);
-
-        $stmt->execute();
-
-        return $stmt->fetch();
-    }
-
-    public function add()
-    {
-        $sql = 'INSERT INTO carts(customer_id) VALUES (:customer_id)';
-
-        $stmt = $this->getPDO()->prepare($sql);
-
-        $stmt->bindParam(':customer_id', $this->customer_id);
-
-        $stmt->execute();
-        if ($this->cart_id === -1) {
-            $this->cart_id = $this->getPDO()->lastInsertId();
+        if ($this->invoice_id === -1) {
+            $invoice['invoice_id'] = $this->getPDO()->lastInsertId();
         }
+
+        $sql = "INSERT INTO invoices(customer_id, invoice_status, total, payment_method, shipment_method)
+         VALUES (:customer_id,:invoice_status,:total,:payment_method,:shipment_method)";
+
+        $stmt = $this->getPDO()->prepare($sql);
+
+        return $stmt->execute([
+            ':customer_id' => $this->customer_id,
+            ':invoice_status' => $this->invoice_status,
+            ':total' => $this->total,
+            ':payment_method' => $this->payment_method,
+            ':shipment_method' => $this->shipment_method
+        ]);
     }
 
     public function getCustomerID(): string
@@ -60,9 +50,9 @@ class Invoice extends Model
         return $this->customer_id;
     }
 
-    public function getCartID(): string
+    public function getInvoiceID(): string
     {
-        $sql = 'SELECT cart_id FROM carts WHERE customer_id = :customer_id';
+        $sql = 'SELECT invoice_id FROM invoices WHERE customer_id = :customer_id';
 
         $stmt = $this->getPDO()->prepare($sql);
 
@@ -71,5 +61,33 @@ class Invoice extends Model
         ]);
 
         return $stmt->fetchColumn();
+    }
+
+    public static function getInvoiceByCustomerID(int $id)
+    {
+        $sql = 'SELECT * FROM invoices WHERE customer_id = :customer_id';
+
+        $model = new Model();
+
+        $stmt = $model->getPDO()->prepare($sql);
+
+        $stmt->execute([
+            ':customer_id' => $id
+        ]);
+
+        return $stmt->fetchAll();
+    }
+
+    public static function deleteInvoice(int $id): bool
+    {
+        $sql = 'DELETE FROM invoices WHERE invoice_id = :invoice_id';
+
+        $model = new Model();
+
+        $stmt = $model->getPDO()->prepare($sql);
+
+        return $stmt->execute([
+            ':invoice_id' => $id
+        ]);
     }
 }

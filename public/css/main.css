@@ -162,6 +162,12 @@ p {
   column-gap: 24px;
 }
 
+.grid-col-template2 {
+  display: grid;
+  grid-template-columns: auto 180px 180px 180px 180px 180px 120px;
+  column-gap: 24px;
+}
+
 @media screen and (min-width: 800px) {
   h1 {
     font-size: 4rem;
@@ -335,4 +341,12 @@ Navbar
   .social-icons a:hover {
     color: var(--clr-primary-7);
   }
+}
+
+/* disable btn */
+
+.disable {
+  pointer-events: none;
+  cursor: default;
+  background-color: lightcoral;
 }

@@ -138,6 +138,7 @@ class Customer extends Model
         return $values;
     }
 
+
     #Validate form values
     public function validate(array $except = [], bool $isUpdate = false): bool
     {
@@ -157,6 +158,8 @@ class Customer extends Model
         );
         if (!$validPhone) {
             $this->errors['phone'] = 'Số điện thoại không hợp lệ';
+        } elseif ($this->findPhonenumber($this->phone_number)) {
+            $this->errors['phone'] = 'Số điện thoại đã tồn tại';
         }
 
         if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $this->email)) {

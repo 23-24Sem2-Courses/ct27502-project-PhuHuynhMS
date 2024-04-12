@@ -62,7 +62,7 @@ include_once __DIR__ . '/../partials/header.php';
                     </div>
                 </div>
                 <div class="text-center mt-2">
-                    <a href="/checkout/order" class="text-center btn btn-danger w-100" id="order-btn">Đặt hàng</a>
+                    <a href="/checkout/order" class="text-center btn btn-danger w-100" id="order-btn">Thanh toán</a>
                 </div>
             </div>
         </div>

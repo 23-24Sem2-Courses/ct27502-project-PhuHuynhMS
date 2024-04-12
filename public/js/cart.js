@@ -77,7 +77,12 @@ let deleteItem = function (id) {
         updateTotal();
 
         $('#delete-cart-confirm').modal('hide');
+
+        disabledOrderBtn();
+
     });
+
+
 }
 
 
@@ -100,6 +105,7 @@ let increase = function (id) {
 
     cartItemsData[index].quantity = quantity;
     updateTotal();
+    disabledOrderBtn();
 
     localStorage.setItem('cartList', JSON.stringify(cartItemsData));
 }
@@ -126,6 +132,7 @@ let decrease = function (id) {
     localStorage.setItem('cartList', JSON.stringify(cartItemsData));
     generateCart();
     updateTotal();
+    disabledOrderBtn();
 
 
 }
@@ -148,16 +155,22 @@ let updateTotal = function () {
     else {
         total_field.innerHTML = totalPrice + "<sup>đ</sup>";
         temp_cal.innerHTML = totalPrice + "<sup>đ</sup>";
-        console.log(totalPrice);
     }
 }
 
 updateTotal();
 
-if (cartItemsData.length === 0) {
-    const orderBtn = document.querySelector('#order-btn');
+//order button
+const orderBtn = document.querySelector('#order-btn');
 
-    orderBtn.disabled = true;
+const disabledOrderBtn = function () {
+    if (cartItemsData.length === 0) {
+
+        orderBtn.classList.add('disable');
+    }
 }
+
+disabledOrderBtn();
+
 
 

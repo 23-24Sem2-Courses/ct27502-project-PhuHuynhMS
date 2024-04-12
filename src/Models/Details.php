@@ -20,4 +20,15 @@ class Details extends Model
 
         return $this;
     }
+
+    public function add()
+    {
+        $record['invoice_id'] = $this->invoice_id;
+        $record['id_book'] = $this->id_book;
+        $record['quantity'] = $this->quantity;
+
+        $this->save('details', $record);
+    }
+
+    
 }
