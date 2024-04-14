@@ -17,7 +17,7 @@ $(document).ready(function () {
 
         if (nameTd.length > 0) {
             $('.modal-body').html(
-                `Bạn có chắc chắn muốn xóa "${nameTd.text()}" ?`
+                `Bạn có chắc chắn muốn xóa <strong>"${nameTd.text()}</strong>" ?`
             );
         }
         $('#delete-confirm').modal({

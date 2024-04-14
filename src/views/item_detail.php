@@ -99,9 +99,6 @@ include_once __DIR__ . '/../partials/header.php';
                     <button class="btn-more border-0 transparent text-primary" style="background: transparent;">Xem thêm</button>
                 </div>
             </div>
-            <div class="detail-section d-flex flex-column mb-3 me-3 detail-item p-3">
-                <h3>Một số sản phẩm tương tự</h3>
-            </div>
         </div>
     </div>
     <div class="modal" tabindex="-1">

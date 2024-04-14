@@ -1,7 +1,7 @@
 <nav>
     <div class="nav-center">
         <div class="nav-header">
-            <img class="nav-img">
+            <img class="nav-img me-3" src="/uploads/Capture.PNG" width="250px" height="120px">
             <button class="search-btn-sm">
                 <i class="fa fa-search"></i>
             </button>

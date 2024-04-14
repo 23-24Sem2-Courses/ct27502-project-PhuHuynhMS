@@ -128,6 +128,7 @@ class AdminProductController
         $book_id = (int)$sencondParamArray[1];
 
         if (Book::deleteBook($book_id)) {
+            $_SESSION['delete'] = 'success';
             redirect('/admin');
         }
     }

@@ -157,4 +157,54 @@ class Invoice extends Model
 
         return $contacts;
     }
+    public static function update_status(int $id, string $status): bool
+    {
+        $sql = 'UPDATE invoices SET invoice_status = :invoice_status WHERE invoice_id = :invoice_id';
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+
+        return $stmt->execute([
+            ':invoice_status' => $status,
+            ':invoice_id' => $id
+        ]);
+    }
+
+    public function findByStatus(string $status_): array
+    {
+        $invoices = [];
+
+        $sql = 'SELECT * FROM invoices WHERE invoice_status = :invoice_status';
+
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindValue(':invoice_status', $status_);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch()) {
+            $invoice = new Invoice($this->getPDO());
+            $invoice->fillfromDB($row);
+            $invoices[] = $invoice;
+        }
+
+        return $invoices;
+    }
+
+    public function findByDate(string $date): array
+    {
+        $invoices = [];
+
+        $sql = 'SELECT * FROM invoices WHERE created_at BETWEEN :created_at AND now()';
+
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindValue(':created_at', $date);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch()) {
+            $invoice = new Invoice($this->getPDO());
+            $invoice->fillfromDB($row);
+            $invoices[] = $invoice;
+        }
+
+        return $invoices;
+    }
+
 }

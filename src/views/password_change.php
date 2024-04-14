@@ -6,13 +6,6 @@ include_once __DIR__ . '/../partials/header.php';
 
 
 <body>
-    <?php if (isset($_SESSION['update'])) {
-        unset($_SESSION['update']);
-        echo '<div class="alert alert-success mb-0 alert-dismissible fade show" role="alert">
-    <strong>Cập nhật thông tin thành công!</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>';
-    }  ?>
     <?php include_once __DIR__ . '/../partials/navbar.php'; ?>
 
     <div class="container">
@@ -22,6 +15,13 @@ include_once __DIR__ . '/../partials/header.php';
                 <div class="container">
                     <div class="row">
                         <div class="info col-8">
+                            <?php if (isset($_SESSION['update'])) {
+                                unset($_SESSION['update']);
+                                echo '<div class="alert alert-success mb-0 alert-dismissible fade show" role="alert">
+                                    <strong>Thay đổi mật khẩu thành công!</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>';
+                            }  ?>
                             <i class="fas fa-address-card" style="font-size: 3rem;"></i>
                             <form action="/customer/changePasswd" method="post" class="mt-3">
                                 <div class="form-group">

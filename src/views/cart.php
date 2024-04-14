@@ -76,7 +76,7 @@ include_once __DIR__ . '/../partials/header.php';
                 </div>
                 <div class="cart-modal-body p-2">Do you want to delete this contact?</div>
                 <div class="modal-footer">
-                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="delete-cart-item">Xóa</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-danger" id="delete-cart-item">Xóa</button>
                     <button type="button" data-bs-dismiss="modal" class="btn btn-default">Hủy</button>
                 </div>
             </div>

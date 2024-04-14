@@ -144,41 +144,6 @@ function removeElement(array, elem) {
 }
 
 const checkedID = [];
-// let updateTotal = function () {
-//     
-
-//     // let totalPrice = cartItemsData.reduce((total, x) => {
-//     //     let price = `#total${x.id}`;
-//     //     let price_field = document.querySelector(price);
-
-//     //     return total + parseFloat(price_field.innerText);
-//     // }, 0);
-
-//     total_field.innerText = "Vui lòng chọn sản phẩm";
-//     temp_cal.innerHTML = 0 + "<sup>đ</sup>";
-
-
-//     let sum = parseFloat(document.querySelector('#temp_cal').innerText);
-//     const selectedValue = document.querySelectorAll('.product');
-//     selectedValue.forEach(function (e) {
-//         if (e.checked && !checkedID.includes(e.value)) {
-//             const total = document.querySelector(`#total${e.value}`).innerText;
-//             checkedID.push(e.value);
-//             sum += parseFloat(total);
-//             total_field.innerHTML = sum + '<sup>đ</sup>';
-//             temp_cal.innerHTML = sum + '<sup>đ</sup>';
-//         } else {
-//             if (checkedID.includes(e.value) && !e.checked) {
-//                 const total = document.querySelector(`#total${e.value}`).innerText;
-//                 sum -= parseFloat(total);
-//                 total_field.innerHTML = sum + '<sup>đ</sup>';
-//                 temp_cal.innerHTML = sum + '<sup>đ</sup>';
-//                 removeElement(checkedID, e.value);
-//                 console.log(checkedID);
-//             }
-//         }
-//     });
-// }
 
 
 // updateTotal();

@@ -166,10 +166,18 @@ p {
     width: 22rem;
 }
 
-.admin-add-btn{
+.admin-add-btn {
     margin-bottom: .8rem !important;
     margin-top: 0.5rem;
 }
+
+.admin_container {
+    position: absolute;
+    right: 0;
+    top: 11%;
+    width: 83.8%;
+}
+
 @media screen and (min-width: 800px) {
     h1 {
         font-size: 4rem;

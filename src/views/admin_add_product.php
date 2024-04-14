@@ -5,16 +5,18 @@ include_once __DIR__ . '/../partials/header.php';
 ?>
 
 <body>
-    <?php include_once __DIR__ . '/../partials/admin_navbar.php';
-    if (isset($_SESSION['added'])) {
-        unset($_SESSION['added']);
-        echo '<div class="alert alert-success alert-dismissible fade show admin-alert" role="alert">
-        <strong>Thêm sản phẩm thành công</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>';
-    } ?>
+    <?php include_once __DIR__ . '/../partials/admin_navbar.php'; ?>
     <div class="container-fluid d-flex justify-content-center align-items-start mt-3 product-content product-add-content">
         <div class="container bg-white rounded col m-1">
+            <?php
+            if (isset($_SESSION['added'])) {
+                unset($_SESSION['added']);
+                echo '<div class="alert alert-success alert-dismissible fade show admin-alert" role="alert">
+                    <strong>Thêm sản phẩm thành công</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
+            }
+            ?>
             <div class="header border-bottom d-flex justify-content-between p-3">
                 <h3>Thông tin sản phẩm</h3>
             </div>

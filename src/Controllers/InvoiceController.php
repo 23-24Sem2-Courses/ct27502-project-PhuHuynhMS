@@ -94,6 +94,9 @@ class InvoiceController
                 $_SESSION['delete_invoice'] = 'success';
                 redirect('/checkout/confirmation');
             }
+        } else {
+            $_SESSION['delete_invoice'] = 'failed';
+            redirect('/checkout/confirmation');
         }
     }
 }
