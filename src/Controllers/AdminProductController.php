@@ -3,14 +3,35 @@
 namespace App\Controllers;
 
 use App\Models\Book;
+use App\Models\Paginator;
 
 class AdminProductController
 {
     public function index()
     {
+        $limit = (isset($_GET['limit']) && is_numeric($_GET['limit'])) ?
+            (int)$_GET['limit'] : 5;
+        $page = (isset($_GET['page']) && is_numeric($_GET['page'])) ?
+            (int)$_GET['page'] : 1;
+        $count = Book::count();
+
+
+        $paginator = new Paginator(
+            totalRecords: (int)$count,
+            recordsPerpage: $limit,
+            currentPage: $page
+        );
+
+        $book = new Book();
+
+        $books = $book->paginate($paginator->recordOffset, $paginator->recordsPerpage);
+        $pages = $paginator->getPages(length: 3);
+
         if (!isset($_GET['searchKey'])) {
             render_view('admin', [
-                'books' => Book::allBook()
+                'books' => $books,
+                'paginator' => $paginator,
+                'pages' => $pages
             ]);
         } else {
 

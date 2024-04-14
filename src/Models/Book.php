@@ -6,7 +6,8 @@ use App\Models\Model;
 
 class Book extends Model
 {
-    private $book_id = -1, $book_name, $author, $price, $quantity, $quantity_sold, $description, $image,
+    public $book_id = -1;
+    public $book_name, $author, $price, $quantity, $quantity_sold, $description, $image,
         $genre, $page_quantity, $cover, $manufactorer, $year;
     private $errors = [];
 
@@ -121,6 +122,113 @@ class Book extends Model
 
     public static function getBooksByKey(string $key): array|bool
     {
-        return parent::findByKeys($key, 'products', ['book_name', 'author']);
+        return parent::findByKeys($key, 'products', ['book_name', 'author', 'genre']);
+    }
+
+    public static function getAllGenre(): array
+    {
+        $genres = [];
+        $model = new Model();
+        $sql = 'SELECT genre FROM products';
+
+        $stmt = $model->getPDO()->prepare($sql);
+        $stmt->execute();
+        while ($row = $stmt->fetch()) {
+            if (!in_array($row, $genres)) {
+                $genres[] = $row;
+            }
+        }
+        return $genres;
+    }
+
+    public static function count()
+    {
+        $sql = 'SELECT COUNT(*) FROM products';
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+
+        $stmt->execute();
+
+        return $stmt->fetchColumn(0);
+    }
+
+    protected function fillfromDB(array $row): Book
+    {
+        [
+            'id_book' => $this->book_id,
+            'book_name' => $this->book_name,
+            'author' => $this->author,
+            'genre' => $this->genre,
+            'price' => $this->price,
+            'quantity' => $this->quantity,
+            'quantity_sold' => $this->quantity_sold,
+            'description' => $this->description,
+            'image' => $this->image,
+            'page_quantity' => $this->page_quantity,
+            'cover' => $this->cover,
+            'manufactorer' => $this->manufactorer,
+            'year' => $this->year
+
+        ] = $row;
+
+        return $this;
+    }
+
+    public function paginate(int $offset = 0, int $lim = 10): array
+    {
+        $contacts = [];
+
+        $sql = 'SELECT * FROM products LIMIT :offset, :lim';
+        $stmt = $this->getPDO()->prepare($sql);
+        $stmt->bindValue(':offset', $offset, $this->getPDO()::PARAM_INT);
+        $stmt->bindValue(':lim', $lim, $this->getPDO()::PARAM_INT);
+        $stmt->execute();
+
+        while ($row = $stmt->fetch()) {
+            $contact = new Book($this->getPDO());
+            $contact->fillfromDB($row);
+            $contacts[] = $contact;
+        }
+
+        return $contacts;
+    }
+
+    public function paginateWithKey(int $offset = 0, int $lim = 10, string $key, array $props): array
+    {
+        $contacts = [];
+
+        $number_prop = count($props);
+        $sql = '';
+        $i = 0;
+        do {
+            $param = $props[$i];
+            if ($i === 0) {
+                $sql = "SELECT * FROM products WHERE  $param LIKE :$param";
+            } else {
+                $sql .= " or $param LIKE :$param";
+                $number_prop--;
+            }
+            $i++;
+        } while ($number_prop > 1);
+
+        $sql .= 'LIMIT :offset, :lim';
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+
+        $var = "%$key%";
+        foreach ($props as $prop) {
+            $stmt->bindParam(":$prop", $var);
+        }
+        $stmt->bindValue(':offset', $offset, $this->getPDO()::PARAM_INT);
+        $stmt->bindValue(':lim', $lim, $this->getPDO()::PARAM_INT);
+        
+        $stmt->execute();
+
+        while ($row = $stmt->fetch()) {
+            $contact = new Book($this->getPDO());
+            $contact->fillfromDB($row);
+            $contacts[] = $contact;
+        }
+        return $contacts;
     }
 }

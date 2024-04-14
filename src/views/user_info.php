@@ -75,6 +75,8 @@ include_once __DIR__ . '/../partials/header.php';
                         <div class="social-icons flex-column border-start align-item-center col social-link">
                             <div class="change-passwd mb-3">
                                 <a href="/customer/changePasswd">Đổi mật khẩu</a>
+                            </div><div class="change-passwd mb-3">
+                                <a href="/checkout/confirmation">Đơn hàng</a>
                             </div>
                             <div>
                                 <h4>Liên kết mạng xã hội</h4>

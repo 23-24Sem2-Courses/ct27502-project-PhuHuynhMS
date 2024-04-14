@@ -47,7 +47,7 @@
             </li>
             <?php if (isset($_SESSION['logged_in'])) : ?>
                 <li>
-                    <a href="/customer/logout" class="text-danger">
+                    <a href="/customer/logout" class="text-danger sign-out">
                         <i class='fas fa-sign-out-alt'></i>
                     </a>
                 </li>

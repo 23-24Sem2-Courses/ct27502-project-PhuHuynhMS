@@ -15,66 +15,11 @@ include_once __DIR__ . '/../partials/header.php';
       <article class="col-2 categories">
         <h3 class="category-heading">Danh mục</h3>
         <ul class="category-links">
-          <li>
-            <a href="#">Sách văn học</a>
-          </li>
-          <li>
-            <a href="#">Sách kinh tế</a>
-          </li>
-          <li>
-            <a href="#">Sách thiếu nhi</a>
-          </li>
-          <li>
-            <a href="#">Sách kỹ năng sống</a>
-          </li>
-          <li>
-            <a href="#">Sách bà mẹ - em bé</a>
-          </li>
-          <li>
-            <a href="#">Sách giáo khoa - giáo trình</a>
-          </li>
-          <li>
-            <a href="#">Sách học ngoại ngữ</a>
-          </li>
-          <li>
-            <a href="#">Từ điển </a>
-          </li>
-          <li>
-            <a href="#">Sách đời sống - xã hội</a>
-          </li>
-          <li>
-            <a href="#">Sách dạy nấu ăn</a>
-          </li>
-          <li>
-            <a href="#">Sách tôn giáo - tâm linh</a>
-          </li>
-          <li>
-            <a href="#">Sách về doanh nhân</a>
-          </li>
-          <li>
-            <a href="#">Sách kiến thức tổng hợp</a>
-          </li>
-          <li>
-            <a href="#">Sách lịch sử</a>
-          </li>
-          <li>
-            <a href="#">Sách y học</a>
-          </li>
-          <li>
-            <a href="#">Sách công nghệ thông tin</a>
-          </li>
-          <li>
-            <a href="#">Sách pháp lý</a>
-          </li>
-          <li>
-            <a href="#">Sách về điện ảnh</a>
-          </li>
-          <li>
-            <a href="#">Truyện tranh, manga, comic</a>
-          </li>
-          <li>
-            <a href="#">Sách tiểu thuyết</a>
-          </li>
+          <?php if (isset($genres)) foreach ($genres as $genre) : ?>
+            <li>
+              <a href="/?<?= 'searchKey=' . $genre[0] ?? '' ?>"><?= $genre[0] ?? '' ?></a>
+            </li>
+          <?php endforeach ?>
         </ul>
       </article>
       <!-- Products -->
@@ -83,15 +28,15 @@ include_once __DIR__ . '/../partials/header.php';
         <?php if (isset($books))
           foreach ($books as $book) :
         ?>
-          <a href="/product/detail/id=<?= $book['id_book'] ?>">
+          <a href="/product/detail/id=<?= $book->book_id ?? $book['id_book'] ?>">
             <div class="item card" style="width: 18rem;">
-              <img src="<?= './uploads/' . $book['image'] ?>" class="card-img-top" alt="...">
+              <img src="<?= './uploads/' . ($book->image ?? $book['image']) ?>" class="card-img-top" alt="...">
               <div class="card-body">
-                <p class="price"><?= number_format($book['price'], thousands_separator: ',') ?? '' ?> <sup>₫</sup></p>
-                <p class="card-text"><?= htmlspecialchars($book['author']) ?? '' ?></p>
-                <p class="book_name"><?= htmlspecialchars($book['book_name']) ?? '' ?></p>
+                <p class="price"><?= number_format($book->price ?? $book['price'], thousands_separator: ',') ?? '' ?> <sup>₫</sup></p>
+                <p class="card-text"><?= htmlspecialchars($book->author ?? $book['author']) ?? '' ?></p>
+                <p class="book_name"><?= htmlspecialchars($book->book_name ?? $book['book_name']) ?? '' ?></p>
                 <p class="quantity-sold">Đã bán
-                  <?= thousandsCurrencyFormat($book['quantity_sold']) ?></p>
+                  <?= thousandsCurrencyFormat($book->quantity_sold ?? $book['quantity_sold']) ?></p>
               </div>
             </div>
           </a>
@@ -99,7 +44,24 @@ include_once __DIR__ . '/../partials/header.php';
       </div>
     </div>
   </div>
-
+  <!-- Pagination -->
+  <nav class="d-flex justify-content-center mt-2" style="background: transparent;">
+    <ul class="pagination">
+      <li class="page-item<?= $paginator->getPrevPage() ? '' : ' disabled' ?>">
+        <a role="button" class="page-link" href="/?page=<?= $paginator->getPrevPage() ?>&limit=5">
+          <span>&laquo;</span>
+        </a>
+      </li>
+      <?php if (isset($pages)) foreach ($pages as $page) : ?>
+        <li class="page-item<?= $paginator->currentPage === $page ? ' active' : '' ?>">
+          <a href="/?page=<?= $page ?>&limit=12" class="page-link"><?= $page ?></a>
+        </li>
+      <?php endforeach ?>
+      <li class="page-item<?= $paginator->getNextpage() ? '' : ' disabled' ?>">
+        <a href="/?page=<?= $paginator->getNextpage() ?>&limit=12" role="button" class="page-link"><span>&raquo;</span></a>
+      </li>
+    </ul>
+  </nav>
   <?php
   include_once __DIR__ . '/../partials/footer.php';
   include_once __DIR__ . '/../partials/foot.php';

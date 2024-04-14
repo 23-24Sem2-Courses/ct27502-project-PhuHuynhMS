@@ -1,8 +1,6 @@
 <?php
 define('TITLE', 'Thanh toán');
 include_once __DIR__ . '/../partials/header.php';
-
-print_r($_SESSION);
 ?>
 
 <body>

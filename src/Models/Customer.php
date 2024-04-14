@@ -156,10 +156,15 @@ class Customer extends Model
             '/^(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b$/',
             $this->phone_number
         );
+
         if (!$validPhone) {
             $this->errors['phone'] = 'Số điện thoại không hợp lệ';
-        } elseif ($this->findPhonenumber($this->phone_number)) {
-            $this->errors['phone'] = 'Số điện thoại đã tồn tại';
+        } else {
+            if (!in_array('phone_number', $except)) {
+                if ($this->findPhonenumber($this->phone_number)) {
+                    $this->errors['phone'] = 'Số điện thoại đã tồn tại';
+                }
+            }
         }
 
         if (!preg_match("/([\w\-]+\@[\w\-]+\.[\w\-]+)/", $this->email)) {

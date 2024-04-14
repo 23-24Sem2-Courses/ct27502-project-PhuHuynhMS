@@ -24,7 +24,6 @@ if (isset($_SESSION['added'])) {
                 <div class="content mt-3">
                     <table class="table table-striped table-hover">
                         <div class="d-flex justify-content-between mt-1">
-                            <a href="/admin/add" class="btn btn-primary mb-2 admin-add-btn">Thêm sản phẩm</a>
                             <form action="/admin" method="get">
                                 <div class="searchbar admin-searchbar mb-2">
                                     <input type="text" class="search" name="searchKey" placeholder="Tìm kiếm">
@@ -37,41 +36,33 @@ if (isset($_SESSION['added'])) {
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Ảnh sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Tác giả</th>
-                                <th>Thể loại</th>
-                                <th>Mô tả</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Số lượng đã bán</th>
-                                <th>Tùy chỉnh</th>
+                                <th>Trạng thái</th>
+                                <th>Thời gian lập</th>
+                                <th>Hình thức thanh toán</th>
+                                <th>Hình thức giao hàng</th>
+                                <th>Tổng tiền</th>
+                                <th>Tùy chọn</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($books as $book) : ?>
+                            <?php foreach ($invoices as $invoice) : ?>
                                 <tr>
-                                    <td><strong><?= htmlspecialchars($book->book_id ?? '') ?></strong></td>
-                                    <td>
-                                        <img src="<?= './uploads/' . $book->image ?>" alt="" width="100px" height="100px">
-                                    </td>
-                                    <td><?= htmlspecialchars($book->book_name ?? '') ?></td>
-                                    <td><?= htmlspecialchars($book->author ?? '') ?></td>
-                                    <td><?= htmlspecialchars($book->genre ?? '') ?></td>
-                                    <td><?= limit_word(htmlspecialchars($book->description) ?? '', true, 400) ?></td>
-                                    <td><?= htmlspecialchars(number_format($book->price, thousands_separator: ',') ?? '') ?></td>
-                                    <td><?= htmlspecialchars($book->quantity ?? '') ?></td>
-                                    <td><?= htmlspecialchars($book->quantity_sold ?? '') ?></td>
+                                    <td><strong><?= htmlspecialchars($invoice->invoice_id ?? '') ?></strong></td>
+                                    <td><?= htmlspecialchars($invoice->invoice_status ?? '') ?></td>
+                                    <td><?= htmlspecialchars(date("d-m-Y", strtotime($invoice->created_at))) ?></td>
+                                    <td><?= htmlspecialchars($invoice->payment_method ?? '') ?></td>
+                                    <td><?= htmlspecialchars($invoice->shipment_method ?? '') ?></td>
+                                    <td><?= htmlspecialchars($invoice->total ?? '') ?></td>
                                     <td style="min-width: 100px;">
                                         <div class="d-flex flex-column align-items-center">
-                                            <a href="/product_alter/id=<?= htmlspecialchars($book->book_id ?? '') ?>" class="btn btn-primary mb-1">
+                                            <a href="/product_alter/id=<?= htmlspecialchars($invoice->invoice_id ?? '') ?>" class="btn btn-primary mb-1" style="min-width: 90px;">
                                                 <i class="fas fa-edit"></i>
-                                                Sửa
+                                                Xem
                                             </a>
-                                            <form action="/product_del/id=<?= htmlspecialchars($book->book_id ?? '') ?>" method="get" class="form-inline ml-1">
-                                                <button type="submit" class="btn btn-xs btn-danger ml-1" data-bs-toggle="modal" data-bs-target="#delete-confirm" name="delete-btn">
+                                            <form action="/product_del/id=<?= htmlspecialchars($invoice->invoice_id ?? '') ?>" method="get" class="form-inline ml-1">
+                                                <button type="submit" class="btn btn-xs btn-danger ml-1" data-bs-toggle="modal" data-bs-target="#delete-confirm" name="delete-btn" style="min-width: 90px;">
                                                     <i class="fa fa-trash" alt="delete">
-                                                    </i> Xóa
+                                                    </i> Hủy
                                                 </button>
                                             </form>
                                         </div>
@@ -84,21 +75,20 @@ if (isset($_SESSION['added'])) {
                     <nav class="d-flex justify-content-center mt-2" style="background: transparent;">
                         <ul class="pagination">
                             <li class="page-item<?= $paginator->getPrevPage() ? '' : ' disabled' ?>">
-                                <a role="button" class="page-link" href="/admin?page=<?= $paginator->getPrevPage() ?>&limit=5">
+                                <a role="button" class="page-link" href="/admin/invoice?page=<?= $paginator->getPrevPage() ?>&limit=5">
                                     <span>&laquo;</span>
                                 </a>
                             </li>
                             <?php if (isset($pages)) foreach ($pages as $page) : ?>
                                 <li class="page-item<?= $paginator->currentPage === $page ? ' active' : '' ?>">
-                                    <a href="/admin?page=<?= $page ?>&limit=5" class="page-link"><?= $page ?></a>
+                                    <a href="/admin/invoice?page=<?= $page ?>&limit=5" class="page-link"><?= $page ?></a>
                                 </li>
                             <?php endforeach ?>
                             <li class="page-item<?= $paginator->getNextpage() ? '' : ' disabled' ?>">
-                                <a href="/admin?page=<?= $paginator->getNextpage() ?>&limit=5" role="button" class="page-link"><span>&raquo;</span></a>
+                                <a href="/admin/invoice?page=<?= $paginator->getNextpage() ?>&limit=5" role="button" class="page-link"><span>&raquo;</span></a>
                             </li>
                         </ul>
                     </nav>
-
                 </div>
             </div>
         </div>

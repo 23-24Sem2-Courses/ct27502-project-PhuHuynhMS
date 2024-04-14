@@ -63,7 +63,8 @@ include_once __DIR__ . '/../partials/header.php';
                             <div class="d-flex align-items-center">
                                 <p class="text-black" id="<?= $invoice['invoice_id'] ?? '' ?>_status" style="display: contents;"><?= $invoice['invoice_status'] ?? '' ?></p>
                             </div>
-                            <div class="p-2">
+                            <div class="p-2 d-flex flex-column">
+                                <a href="/check/invoice/id=<?= $invoice['invoice_id'] ?? '' ?>" class="btn btn-primary mb-2">Chi tiết</a>
                                 <form action="/invoice/delete" method="post">
                                     <input type="hidden" name="invoice_delete_id" value="<?= $invoice['invoice_id'] ?? '' ?>">
                                     <input type="hidden" name="invoice_delete_status" value="<?= $invoice['invoice_status'] ?? '' ?>">

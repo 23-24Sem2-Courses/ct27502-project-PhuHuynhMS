@@ -30,5 +30,17 @@ class Details extends Model
         $this->save('details', $record);
     }
 
-    
+    public static function getAllDetails(int $invoice_id): array
+    {
+        $sql = 'SELECT * FROM details WHERE invoice_id = :invoice_id';
+
+        $model = new Model();
+        $stmt = $model->getPDO()->prepare($sql);
+
+        $stmt->execute([
+            ':invoice_id' => $invoice_id
+        ]);
+
+        return $stmt->fetchAll();
+    }
 }

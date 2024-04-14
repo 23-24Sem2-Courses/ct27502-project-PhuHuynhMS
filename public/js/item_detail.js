@@ -80,6 +80,7 @@ let addToCart = function (id) {
             });
             localStorage.setItem('cartList', JSON.stringify(cartList));
         }
+        $('.modal').modal('show');
     }
 }
 

@@ -30,10 +30,9 @@ class CustomerRegisterController extends Controller
         $customer = new Customer();
         if ($customer->fill($_POST)->validate()) {
             $customer->add();
-            
-            redirect('/login');
-        }
-        else {
+            $_SESSION['registered'] = 'success';
+            redirect('/signup');
+        } else {
             $errors = $customer->getValidationErrors();
             $values = $customer->getCustomerFormValue();
             render_view('/sign-up', [

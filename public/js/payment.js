@@ -32,7 +32,7 @@ let generateCartDetail = () => {
             <p style="display: contents;" id="price${id}">Thành tiền: ${parseFloat(price) * quantity}<sup>đ</sup></p>
         </div>
     </div>`;
-    });
+    }).join('');
 }
 
 generateCartDetail();
@@ -67,4 +67,6 @@ confirmOderBtn.addEventListener('click', function (e) {
     xhr.send(formData);
 
     $('#order-confirm').modal('show');
+
+    localStorage.clear();
 });

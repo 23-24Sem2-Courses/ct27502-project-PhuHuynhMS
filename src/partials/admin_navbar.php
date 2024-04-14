@@ -11,7 +11,7 @@
                     </li>
                     <li class="m-2 btn btn-outline-success">
                         <i class="fas fa-file-invoice"></i>
-                        <a href="#">Đơn đặt hàng</a>
+                        <a href="/admin/invoice">Đơn đặt hàng</a>
                     </li>
                 </ul>
             </div>

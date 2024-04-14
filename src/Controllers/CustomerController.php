@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+
 use App\Models\Customer;
 
 class CustomerController
@@ -12,10 +13,11 @@ class CustomerController
         render_view('/user_info', $loggedinInfo);
     }
 
-    public function update() {
+    public function update()
+    {
         $customer = new Customer();
 
-        $validate = $customer->fill($_POST, ['confirmpassword'])->validate(['passwd', 'confirmpasswd'], isUpdate: True);
+        $validate = $customer->fill($_POST, ['confirmpassword'])->validate(['passwd', 'confirmpasswd', 'phone_number'], isUpdate: True);
         $customerValues = $customer->getCustomerValue();
 
         $errors = $customer->getValidationErrors();
@@ -24,25 +26,23 @@ class CustomerController
             render_view('/user_info', [
                 'errors' => $errors
             ], $customerValues);
-        }
-        else {
+        } else {
 
             $customer->edit($_POST['id'], $_POST);
 
             $customerValues = $customer->getCustomerValue();
-            foreach($customerValues as $key => $value) {
+            foreach ($customerValues as $key => $value) {
                 $_SESSION[$key] = $value;
             }
 
             $_SESSION['update'] = 'success';
 
             render_view('/user_info', $_POST);
-
-
         }
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         session_destroy();
         redirect('/');
     }

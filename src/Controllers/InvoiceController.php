@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Book;
 use App\Models\Customer;
 use App\Models\Details;
 use App\Models\Invoice;
@@ -39,17 +40,47 @@ class InvoiceController
 
         $books_record = json_decode($_POST['dataFromLocalStorage']);
 
-        $invoice->fill($invoice_record)->add();
+        $invoice = $invoice->fill($invoice_record);
+        $invoice->add();
+        echo $invoice->getInvoiceID();
 
-        foreach ($books_record as $record) {
+        foreach ($books_record as $book) {
             $detail_record = [
                 'invoice_id' => $invoice->getInvoiceID(),
-                'id_book' => (int)$record->id,
-                'quantity' => (int)$record->quantity
+                'id_book' => (int)$book->id,
+                'quantity' => (int)$book->quantity
             ];
 
             $detail->fill($detail_record)->add();
         }
+    }
+
+    public function show()
+    {
+        $id = get_URL_Param(3)[1];
+
+        $customer_id = $_SESSION['id'];
+
+        $bookModel = new Book();
+        $customer = new Customer();
+
+        $customerArr = $customer->getCustomerById((int)$customer_id);
+        $detailArr = Details::getAllDetails($id);
+
+        $books = [];
+        foreach ($detailArr as $detail) {
+            $books[] = [
+                Book::getBookByID((int)$detail['id_book']),
+                'quantity' => (int)$detail['quantity']
+            ];
+        }
+
+        $invoice = Invoice::getInvoiceByID((int)$id);
+
+        render_view('invoice_detail', $customerArr, [
+            'books' => $books,
+            'invoice' => $invoice
+        ]);
     }
 
     public function destroy()

@@ -40,7 +40,7 @@ include_once __DIR__ . '/../partials/header.php';
                                 <h4><span class="cost text-black"><strong>0</span><sup class="text-black">₫</sup></strong></h4>
                             </div>
                             <div class="order">
-                                <button class="text-white btn btn-danger mb-2">Mua ngay</button>
+                                <a href="/checkout/cart" class="text-white btn btn-danger mb-2" onclick="addToCart(<?= $id_book ?>)">Mua ngay</a>
                                 <button type="button" class="btn btn-outline-primary add-btn" onclick="addToCart(<?= $id_book ?>)">Thêm vào giỏ</button>
                             </div>
                         </form>
@@ -104,7 +104,19 @@ include_once __DIR__ . '/../partials/header.php';
             </div>
         </div>
     </div>
-    
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body d-flex align-items-center flex-column pb-0">
+                    <i class='far fa-check-circle' style="font-size: 50px; color:green"></i>
+                    <p>Sản phẩm đã được thêm vào giỏ hàng</p>
+                </div>
+                <div class="modal-footer pt-0 border-0">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Ok!!!</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php
     include_once __DIR__ . '/../partials/footer.php';
     include_once __DIR__ . '/../partials/foot.php';
