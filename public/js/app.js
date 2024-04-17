@@ -88,3 +88,4 @@ search.addEventListener('focusout', function () {
     navTools.classList.remove('hide');
     searchBar.classList.remove('d-flex');
 });
+

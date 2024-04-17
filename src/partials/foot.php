@@ -5,6 +5,7 @@
 <script src="/js/item_detail.js"></script>
 <script src="/js/payment.js"></script>
 <script src="/js/invoice.js"></script>
+<script src="/js/admin.js"></script>
 
 </body>
 

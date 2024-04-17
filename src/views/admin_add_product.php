@@ -97,8 +97,10 @@ include_once __DIR__ . '/../partials/header.php';
                     <div class="img"></div>
                     <p class="invalid"><?= $number_error ?? '' ?></p>
                     <p class="invalid"><?= $empty_input ?? '' ?></p>
-                    <button class="btn btn-primary float-end mb-3" type="submit">Lưu thay đổi</button>
+                    <button class="btn btn-primary float-end mb-3" type="submit">Thêm sản phẩm</button>
                 </form>
             </div>
         </div>
     </div>
+
+    <?php include_once __DIR__ . '/../partials/foot.php'; ?>

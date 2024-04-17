@@ -21,6 +21,12 @@
         </div>
         <ul class="social-icons">
             <li>
+                <a href="/">
+                    <i class="fa fa-home"></i>
+                    Trang chủ
+                </a>
+            </li>
+            <li>
                 <?php if (isset($_SESSION['logged_in'])) : ?>
                     <a href="/customer/profile">
                         <i class="fas fa-user"></i>
@@ -32,12 +38,6 @@
                         Tài khoản
                     </a>
                 <?php endif ?>
-            </li>
-            <li>
-                <a href="/">
-                    <i class="fa fa-home"></i>
-                    Trang chủ
-                </a>
             </li>
             <li>
                 <a href="/checkout/cart">
