@@ -49,11 +49,11 @@ include_once __DIR__ . '/../partials/header.php';
                             <a href="/customer/profile">thay đổi</a>
                         </div>
                         <div class="d-flex justify-content-start">
-                            <p class="text-black border-end pe-2"><strong><?= $name ?></strong></p>
-                            <p class="text-black ms-2"><strong><?= $phone_number ?></strong></p>
+                            <p class="text-black border-end pe-2"><strong><?= htmlspecialchars($name) ?></strong></p>
+                            <p class="text-black ms-2"><strong><?= htmlspecialchars($phone_number) ?></strong></p>
                         </div>
                         <div class="address-detail">
-                            <p><?= $address ?></p>
+                            <p><?= htmlspecialchars($address) ?></p>
                         </div>
                     </div>
                     <div class="temporary-cashier mt-2 shadow-sm bg-white">

@@ -94,7 +94,9 @@ include_once __DIR__ . '/../partials/header.php';
                         <label for="newImage" class="form-label">Ảnh bìa sách</label>
                         <input class="form-control" type="file" id="formFile" name="newImage">
                     </div>
-                    <div class="img"></div>
+                    <div class="img">
+                        <img src="" alt="" class="avatar-img me-2" width="180px">
+                    </div>
                     <p class="invalid"><?= $number_error ?? '' ?></p>
                     <p class="invalid"><?= $empty_input ?? '' ?></p>
                     <button class="btn btn-primary float-end mb-3" type="submit">Thêm sản phẩm</button>

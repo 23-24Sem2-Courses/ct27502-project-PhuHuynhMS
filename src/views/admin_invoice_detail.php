@@ -47,19 +47,19 @@ include_once __DIR__ . '/../partials/header.php';
                                             <div class="d-flex align-items-center">
                                                 <div class="d-flex align-items-center">
                                                     <a href="/product/detail/id=">
-                                                        <img src="/uploads/<?= $book['image'] ?? "" ?>" alt="" width="120px" height="120px">
+                                                        <img src="/uploads/<?= htmlspecialchars($book['image'] ?? "") ?>" alt="" width="120px" height="120px">
                                                     </a>
                                                 </div>
                                                 <div>
-                                                    <a href="/product/detail/id=" style="color:black"><?= $book['book_name'] ?? "" ?></a>
-                                                    <p><?= $book['author'] ?? "" ?></p>
+                                                    <a href="/product/detail/id=" style="color:black"><?= htmlspecialchars($book['book_name'] ?? "") ?></a>
+                                                    <p><?= htmlspecialchars($book['author'] ?? "") ?></p>
                                                 </div>
                                             </div>
                                             <div>
-                                                <p style="display: contents;">Đơn giá: <?= $book['price'] ?? "" ?><sup>đ</sup></p>
+                                                <p style="display: contents;">Đơn giá: <?= htmlspecialchars($book['price'] ?? "") ?><sup>đ</sup></p>
                                             </div>
                                             <div class="d-flex align-items-center">
-                                                <p id="quantity${id}" style="display: contents;">Số lượng: <?= $a['quantity'] ?? "" ?></p>
+                                                <p id="quantity${id}" style="display: contents;">Số lượng: <?= htmlspecialchars($a['quantity'] ?? "") ?></p>
                                             </div>
                                         </div>
                                     </li>

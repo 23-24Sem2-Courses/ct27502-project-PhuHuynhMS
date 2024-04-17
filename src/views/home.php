@@ -1,6 +1,6 @@
 <?php
 
-define('TITLE', 'Jupiter');
+define('TITLE', 'GreenBooks');
 
 include_once __DIR__ . '/../partials/header.php';
 
@@ -31,7 +31,7 @@ include_once __DIR__ . '/../partials/header.php';
           <a href="/product/detail/id=<?= $book->book_id ?? $book['id_book'] ?>">
             <div class="item card" style="width: 18rem;">
               <img src="<?= './uploads/' . ($book->image ?? $book['image']) ?>" class="card-img-top" alt="...">
-              <div class="card-body">
+              <div class="card-body pb-0" style="height: 188px;">
                 <p class="price"><?= number_format($book->price ?? $book['price'], thousands_separator: ',') ?? '' ?> <sup>₫</sup></p>
                 <p class="card-text"><?= htmlspecialchars($book->author ?? $book['author']) ?? '' ?></p>
                 <p class="book_name"><?= htmlspecialchars($book->book_name ?? $book['book_name']) ?? '' ?></p>

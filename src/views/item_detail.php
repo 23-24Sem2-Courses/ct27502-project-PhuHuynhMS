@@ -55,7 +55,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <p>Năm xuất bản</p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><?= $year ?? '' ?></p>
+                                    <p><?= htmlspecialchars($year ?? '') ?></p>
                                 </div>
                             </div>
                             <div class="row text-center border-bottom">
@@ -63,7 +63,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <p>Nhà xuất bản</p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><?= $manufactorer ?? '' ?></p>
+                                    <p><?= htmlspecialchars($manufactorer ?? '') ?></p>
                                 </div>
                             </div>
                             <div class="row text-center border-bottom">
@@ -71,7 +71,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <p>Số trang</p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><?= $page_quantity ?? '' ?></p>
+                                    <p><?= htmlspecialchars($page_quantity ?? '') ?></p>
                                 </div>
                             </div>
                             <div class="row text-center">
@@ -79,7 +79,7 @@ include_once __DIR__ . '/../partials/header.php';
                                     <p>Bìa</p>
                                 </div>
                                 <div class="col-sm-6">
-                                    <p><?= $cover ?? '' ?></p>
+                                    <p><?= htmlspecialchars($cover ?? '') ?></p>
                                 </div>
                             </div>
                         </div>

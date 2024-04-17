@@ -52,7 +52,7 @@ include_once __DIR__ . '/../partials/header.php';
                 <div class="bg-white mt-2 ps-3 pt-2 pb-2">
                     <h4>Hình thức vận chuyển</h4>
                     <p class="text-black">
-                        <?= $invoice['shipment_method'] ?? '' ?>
+                        <?= htmlspecialchars($invoice['shipment_method'] ?? '')  ?>
                     </p>
                 </div>
                 <div class="bg-white mt-2 ps-3 pt-2 pb-2">
@@ -69,8 +69,8 @@ include_once __DIR__ . '/../partials/header.php';
                         <p>Giao tới</p>
                     </div>
                     <div class="d-flex justify-content-start">
-                        <p class="text-black border-end pe-2"><strong><?= $name ?></strong></p>
-                        <p class="text-black ms-2"><strong><?= $phone_number ?></strong></p>
+                        <p class="text-black border-end pe-2"><strong><?= htmlspecialchars($name ?? '') ?></strong></p>
+                        <p class="text-black ms-2"><strong><?= htmlspecialchars($phone_number ?? '') ?></strong></p>
                     </div>
                     <div class="address-detail">
                         <p><?= htmlspecialchars($address ?? '') ?></p>
