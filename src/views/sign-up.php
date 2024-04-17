@@ -53,9 +53,9 @@ include_once __DIR__ . '/../partials/header.php';
                 <div class="mb-3">
                     <label for="passwd" class="form-label">Mật khẩu</label>
                     <input type="password" class="form-control" id="passwd" name="passwd">
-                    <?php if (isset($errors['passwd'])) : ?>
+                    <?php if (isset($errors[0]['passwd'])) : ?>
                         <span class="invalid">
-                            <strong><?= $errors['passwd'] ?></strong>
+                            <strong><?= $errors[0]['passwd'] ?></strong>
                         </span>
                     <?php endif ?>
                 </div>
@@ -64,7 +64,7 @@ include_once __DIR__ . '/../partials/header.php';
                     <input type="password" class="form-control" id="confirmpasswd" name="confirmpasswd">
                     <?php if (isset($errors['passwd_confirm'])) : ?>
                         <span class="invalid">
-                            <strong><?= $errors['passwd_confirm'] ?></strong>
+                            <strong><?= $errors[0]['passwd_confirm'] ?></strong>
                         </span>
                     <?php endif ?>
                 </div>
